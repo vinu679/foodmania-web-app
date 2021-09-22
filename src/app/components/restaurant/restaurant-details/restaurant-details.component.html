@@ -1,0 +1,59 @@
+<div class="row" *ngIf="data">
+    <div class="col-md-6">
+        <h1 class="mb-10px">{{data.restaurantName}}</h1>
+        <div class="mb-20px info">{{data.restaurantDescription}}</div>
+        <div class="d-flex flex-align-center mb-20px">
+            <img class="icon-img" src="../assets/images/icon_time.png" alt="icon">
+            <div class="ml-15px">
+                <span class="d-block">{{(data.openingHours).split(",")[0]}},</span>
+                <span class="d-block">{{(data.openingHours).split(",")[1]}}</span>
+            </div>
+        </div>
+        <div class="d-flex mb-20px">
+            <img class="icon-img" src="../assets/images/icon_phone.png" alt="icon">
+            <div class="ml-15px">{{data.contactNumber}}</div>
+        </div>
+        <div class="d-flex mb-20px">
+            <img class="icon-img" src="../assets/images/icon_globe.png" alt="icon">
+            <div class="ml-15px">{{data.websiteUrl}}</div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="details-img" [ngStyle]="{'background-image': 'url(' + data.restaurantImage + ')'}"></div>
+    </div>
+    <div class="col-md-12">
+        <div class="separator"></div>
+    </div>
+</div>
+<div *ngIf="data">
+    <ul class="menu menu-violet menu-label-only">
+        <li class="mb-30px" *ngFor="let item of categories; let i = index;">
+            <div class="menu-items">
+                <input type="checkbox" id="mItem-{{i}}"  [(ngModel)]="item.isChecked" (change)="categotySelection($event)">
+                <label for="mItem-{{i}}">{{item.label}}&nbsp;<span *ngIf="i > 0">({{item.count}})</span></label>
+            </div>
+        </li>
+    </ul>
+    
+    <h2 class="mb-30px">Menu</h2>
+    
+    <div class="row">
+        <div *ngIf="dataSource.length > 0 ; then printData else empty"></div>
+        <ng-template #printData>
+            <div class="col-md-6 col-lg-4" *ngFor="let data of dataSource;">
+                <div class="card">
+                    <div class="card-img" [ngStyle]="{'background-image': 'url(' + data.itemPhoto + ')'}"></div>
+                    <div class="d-flex">
+                        <span class="card-title">{{data.itemName}}</span>
+                        <span class="price ml-auto">&pound;{{data.itemCost}}</span>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    
+        <ng-template #empty>
+            <div class="m0-auto"><h3>No Menu Items are found...</h3></div>
+        </ng-template>
+    </div>
+</div>
+

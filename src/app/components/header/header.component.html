@@ -1,0 +1,40 @@
+<div class="d-flex">
+    <div class="ml-auto">
+        <input *ngIf="isActive" type="text" class="input-search ml-15px" placeholder="Search for Restaurants (Press Enter to search)" (keyup)="clearSearch($event)" (change)="applyFilter($event.target.value)" />
+        <button *ngIf="isActive" type="button" class="btn-icon btn-icon-filter ml-15px" (click)="toggleFilterPanel()"></button>
+        <button type="button" class="btn-icon btn-icon-cart ml-15px"><span class="number-badge pos-abs">2</span></button>
+    </div>
+</div>
+
+<div class="filter-wrap" [ngStyle]="{'display': toggleFilter ? 'block' : 'none'}">
+    <div class="filter">
+        <div class="filter-header d-flex mb-50px">
+            <h2 class="align-self-center">Search filters</h2>
+            <button type="button" class="btn-icon btn-icon-close ml-auto" (click)="toggleFilterPanel()"></button>
+        </div>
+        <h2 class="mb-30px">Sort by</h2>
+        <div class="filter-sortBy">
+            <ul class="menu menu-orange mb-50px">
+                <li>
+                    <div class="menu-items">
+                        <input type="checkbox" id="sort-by-status" [(ngModel)]="isOpened">
+                        <label for="sort-by-status">Open</label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <h2 class="mb-30px">Cuisine</h2>
+        <div class="filter-sortBy filter-scroll-height">
+            <ul class="menu menu-orange menu-label-only">
+                <li class="mb-10px" *ngFor="let item of allCuisines; let i = index;">
+                    <div class="menu-items">
+                        <input type="checkbox" id="cItem-{{i}}"  [(ngModel)]="item.isChecked" (change)="onChangeCuisines($event)">
+                        <label for="cItem-{{i}}">{{item.label}}</label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <button type="button" class="btn-default btn-full-width mt-20px" (click)="applyFilterPanel()">Apply filters</button>      
+    </div>    
+</div>

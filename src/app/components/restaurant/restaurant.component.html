@@ -1,0 +1,40 @@
+<h2 class="mb-30px">Category</h2>
+<ul class="menu mb-50px">
+	<li *ngFor="let item of categories; let i = index;">
+		<div class="menu-items">
+			<input type="checkbox" id="catItem-{{i}}" [(ngModel)]="item.isChecked" (change)="categotySelection()">
+			<label for="catItem-{{i}}">{{item.label}}</label>
+		</div>
+	</li>
+</ul>
+
+<h2 class="mb-30px">Restaurants</h2>
+<div class="row">
+	<div *ngIf="dataSource.length > 0 ; then printData else empty"></div>
+	<ng-template #printData>
+		<div class="col-md-6 col-lg-4" *ngFor="let data of dataSource; let i =index;">
+			<div class="card">
+				<div class="card-img" [ngStyle]="{'background-image': 'url(' + data.restaurantImage + ')', 'cursor': 'pointer'}" (click) ="onView(data)"></div>
+				<div class="d-flex">
+					<span class="card-title">{{data.restaurantName}}</span>
+					<span class="card-status ml-auto" [ngClass]="data.isOpen ? 'open' : 'closed'">{{data.isOpen ? "Open Now" : "Closed"}}</span>
+				</div>
+				<div class="card-info">
+					<span>{{(data.restaurantDescription).slice(0, 175)}}</span>
+					<div class="card-more-info">
+						<a href="#" class="info-tooltip-link" [class.active]="selectedIndex === i" (click)="setIndex($event, i)">...</a>
+						<div class="info-tooltip" [ngClass]="[(i + 1) % 3 == 0 ? 'lg-last-card' : '']">
+							<span class="info-tooltip-arrow"></span>
+							<div class="info-tooltip-content">{{data.restaurantDescription}}</div>
+						</div>
+					</div>					
+				</div>
+
+			</div>
+		</div>
+	</ng-template>
+
+	<ng-template #empty>
+		<div class="m0-auto"><h3>No Restaurants are found...</h3></div>
+	</ng-template>
+</div>

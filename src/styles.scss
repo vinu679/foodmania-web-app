@@ -1,1 +1,591 @@
-/* You can add global styles to this file, and also import other style files */
+@import "assets/css/grid.css";
+
+body {
+	padding: 0px;
+	margin: 0px;
+	font-family: "Open Sans";
+	background-color: #FFFFFF;
+	font-size: 14px;
+	font-weight: 400;
+	color: #000000;
+}
+
+@mixin customScroll {
+	&::-webkit-scrollbar {
+		width: 6px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: #F0F4F7;
+		border-radius: 6px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: #BCCAD3;
+		border-radius: 6px;
+	}
+
+	&::-webkit-scrollbar-thumb:hover {
+		background: #5B737B;
+	}
+}
+
+@mixin restaurantImage($height) {
+	width: 100%;
+	height: $height;
+	margin-bottom: 15px;
+	background-repeat: no-repeat;
+	background-position: top;
+	background-size: cover;
+	border-radius: 15px;
+	position: relative;
+}
+
+.main-wrapper {
+	width: 100%;
+	height: 100vh;
+	display: flex;    
+}
+
+.side-nav {
+	width: 300px;
+	height: 100%;
+	padding: 30px 15px;
+	background: #F7F7F7;
+	border-radius: 0px 24px 24px 0px;
+	overflow-y: auto;
+	@include customScroll;
+	position: relative;
+}
+
+.close-side-nav {
+	.side-nav {
+		margin-left: -300px;
+
+		.btn-icon.btn-icon-toggle.toggle-position {
+			left: 30px;
+			background-image: url('assets/images/icon_chev_close.png');
+		}
+	}
+
+	+.content-wrapper {
+		width: 100%;
+	}
+}
+
+.content-wrapper {
+	width: calc(100% - 300px);
+
+	.header {
+		height: 110px;
+		padding: 30px 30px 30px 110px;
+	}
+
+	.content {
+		height: calc(100% - 110px);
+		padding: 30px;
+		overflow-y: auto;
+		@include customScroll;
+	}
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #182135;
+	font-weight: 700;
+	margin: 0px;
+}
+
+h1 {
+	font-size: 32px;
+	line-height: 40px;
+}
+
+h2 {
+	font-size: 24px;
+	line-height: 32px;
+}
+
+.d-block {
+	display: block !important;
+}
+
+.d-flex {
+	display: flex;
+}
+
+.flex-align-center {
+	align-items: center;
+}
+
+.align-self-center {
+	align-self: center;
+}
+
+.ml-auto {
+	margin-left: auto;
+}
+
+.m0-auto {
+	margin: 0 auto;
+}
+
+.ml-15px {
+	margin-left: 15px;
+}
+
+.mt-20px {
+	margin-top: 20px;
+}
+
+.mb-10px {
+	margin-bottom: 10px;
+}
+
+.mb-20px {
+	margin-bottom: 20px;
+}
+
+.mb-30px {
+	margin-bottom: 30px;
+}
+
+.mb-50px {
+	margin-bottom: 50px;
+}
+
+ul {
+	padding: 0px;
+	margin: 0px;
+	list-style: none;
+}
+
+.fl-left {
+	float: left;
+}
+
+.fl-right {
+	float: right;
+}
+
+.separator {
+	width: 400px;
+    border-bottom: 2px solid rgba(163, 163, 164, 0.32);
+    margin: 50px auto;
+}
+
+.logo {
+	width: 180px;
+    height: auto;
+}
+
+.card {
+	margin-bottom: 40px;
+	position: relative;
+
+	.card-img {
+		@include restaurantImage(175px);
+
+		&:before {
+			content: "No preview available";
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			height: 100%;
+			font-size: 22px;
+			font-weight: 700;
+			text-align: center;
+			background-color: #F7F7F7;
+			border-radius: 15px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: -1;
+		}
+	}
+
+	.card-title {
+		font-size: 16px;
+		font-weight: 700;
+		line-height: 24px;
+		color: #182135;
+	}
+
+	.card-status {
+		padding: 4px 8px;
+		border-radius: 4px;
+
+		&.open {
+			background-color: rgba(80, 62, 157, 0.1);
+			color: #503E9D;
+		}
+
+		&.closed {
+			background-color: rgba(251, 109, 58, 0.1);
+			color: #FB6D3A;
+		}
+	}
+
+	.card-info {
+		font-size: 12px;
+		line-height: 18px;
+		margin-top: 10px;
+	}
+}
+
+.menu {
+	li {
+		display: inline-block;
+		margin-right: 45px;
+
+		&:last-child {
+			margin-right: 0px;
+		}
+
+		.menu-items {
+			input {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				width: 45px;
+				height: 45px;
+				margin: 0px;
+				background-color: #F7F7F7;
+				border-radius: 12px;
+				vertical-align: middle;
+				background-image: url('assets/images/icon_mc.png');
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: 30px 30px;
+				cursor: pointer;
+
+				&:checked {
+					background-color: #503E9D;
+				}
+			}
+
+			label {
+				font-size: 16px;
+				font-weight: 700;
+				color: #182135;
+				line-height: 24px;
+				margin-left: 15px;
+				cursor: pointer;
+			}
+		}
+	}
+
+	&.menu-orange {
+		li {	
+			.menu-items {
+				input {	
+					&:checked {
+						background-color: rgba(251, 109, 58, 0.1);
+
+						+label {
+							color: #FB6D3A;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&.menu-violet {
+		li {	
+			.menu-items {
+				input {	
+					&:checked {
+						background-color: #503E9D;
+
+						+label {
+							color: #F7FAFC;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&.menu-label-only {
+		li {
+			margin-right: 15px;
+
+			.menu-items {
+				input {
+					display: none;
+				}
+
+				label {
+					display: inline-block;
+					min-width: 80px;
+					text-align: center;
+					padding: 8px 12px;
+					margin: 0px;
+					color: #626264;
+					background: #F7F7F7;
+					border-radius: 6px;
+				}
+			}
+		}
+
+		&.menu-orange {
+			li {	
+				.menu-items {
+					input {	
+						&:checked {
+							+label {
+								background-color: rgba(251, 109, 58, 0.1);
+								color: #FB6D3A;
+							}
+						}
+					}
+				}
+			}
+		}
+	
+		&.menu-violet {
+			li {	
+				.menu-items {
+					input {	
+						&:checked {
+							+label {
+								background-color: #503E9D;
+								color: #F7FAFC;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.input-search {
+	width: 385px;
+	padding: 15px 12px 15px 45px;
+	background-color: #F7F7F7;
+	border-radius: 10px;
+	border: 0px;
+	background-image: url('assets/images/icon_search.png');
+	background-repeat: no-repeat;
+	background-position: left 12px center;
+	background-size: 20px 20px;
+	outline: none;
+}
+
+.btn-default {
+	display: inline-block;
+	padding: 15px 25px;
+	min-width: 100px;
+	text-align: center;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 32px;
+	background-color: #503E9D;
+	color: #F7FAFC;
+	border-radius: 12px;
+	cursor: pointer;
+
+	&.btn-full-width {
+		width: 100%;
+	}
+}
+
+.btn-icon {
+	width: 45px;
+	height: 45px;
+	background-color: #503E9D;
+	border-radius: 12px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 30px 30px;
+	vertical-align: middle;
+	border: 0px;
+	cursor: pointer;
+
+	&.btn-icon-filter {
+		background-image: url('assets/images/icon_filter.png');
+		background-size: 25px 25px;
+	}
+
+	&.btn-icon-cart {		
+		background-image: url('assets/images/icon_cart.png');
+		background-color: #FB6D3A;
+		background-size: 25px 25px;
+	}
+
+	&.btn-icon-toggle {
+		background-image: url('assets/images/icon_chev_open.png');
+		background-size: 18px 18px;
+
+		&.toggle-position {
+			position: fixed;
+			left: 330px;
+			top: 30px;
+		}
+	}
+
+	&.btn-icon-close {
+		background-image: url('assets/images/icon_close.png');
+		background-color: #F7F7F7;
+	}
+}
+
+.side-nav-menu {
+	li {
+		margin-bottom: 2px;
+
+		a {
+			display: block;
+			padding: 15px 15px 15px 45px;
+			font-size: 16px;
+			line-height: 24px;
+			color: #626264;
+			border-radius: 12px;
+			text-decoration: none;
+			cursor: pointer;
+
+			background-image: url('assets/images/icon_home.png');
+			background-repeat: no-repeat;
+			background-position: left 15px center;
+			background-size: 20px 20px;
+		}
+
+		&:hover, &.active {
+			a {
+				background-color: #503E9D;
+				color: #F7FAFC;
+				background-image: url('assets/images/icon_home_active.png');
+
+				.number-badge {
+					background-color: #F7FAFC;
+					color: #503E9D;
+				}
+			}
+		}
+
+		&.active {
+			a {
+				font-weight: 700;
+			}
+		}
+	}
+}
+
+.number-badge {
+	display: inline-block;
+	padding: 3px 8px;
+	font-size: 12px;
+	line-height: 16px;
+	background-color: #503E9D;
+	color: #F7FAFC;
+	border-radius: 50%;
+
+	&.pos-abs {
+		position: absolute;
+	}
+}
+
+.filter-wrap {
+	display: none;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.16);
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	z-index: 999;
+	
+	.filter {
+		width: 480px;
+		height: 100%;
+		padding: 40px 30px 30px 30px;
+		background-color: #FFFFFF;
+		border-radius: 24px 0px 0px 24px;
+		position: absolute;
+		top: 0px;
+		right: 0px;
+	}
+}
+
+.filter-scroll-height {
+	height: calc(100vh - 470px);
+	overflow-y: auto;
+	@include customScroll;
+}
+
+.info {
+	font-size: 16px;
+	line-height: 24px;
+	margin-top: 10px;
+}
+
+.details-img {
+	@include restaurantImage(295px);
+}
+
+.icon-img {
+	height: 20px;
+}
+
+.price {
+	font-size: 16px;
+    line-height: 24px;
+    color: #503E9D;
+}
+
+.card-more-info {
+	display: inline;
+	position: relative;
+
+	.info-tooltip-link {
+		text-decoration: none;
+		cursor: pointer;
+
+		&.active {
+			+.info-tooltip {
+				display: block;
+			}
+		}
+	}
+
+	.info-tooltip {
+		display: none;
+		width: 300px;
+		padding: 15px 10px 15px 15px;
+		box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.3);
+		border-radius: 4px;
+		background-color: #FFFFFF;
+		position: absolute;
+		left: 20px;
+		bottom: 50%;
+		transform: translateY(50%);
+		z-index: 999;
+
+		.info-tooltip-arrow {
+			width: 15px;
+			height: 15px;
+			background-color: #FFFFFF;
+			position: absolute;
+			left: -7px;
+			bottom: 50%;
+			transform: translateY(50%) rotate(45deg);
+		}
+
+		.info-tooltip-content {
+			max-height: 150px;
+			overflow-y: auto;
+			@include customScroll;
+		}
+
+		&.lg-last-card {
+			left: auto !important;
+			right: 15px;
+
+			.info-tooltip-arrow {
+				left: calc(100% - 7px) !important;
+			}
+		}
+	}
+}
