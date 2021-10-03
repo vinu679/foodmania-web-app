@@ -8,7 +8,7 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 export class SidenavComponent implements OnInit {
 
   toggleNav: boolean = true;
-
+  selectedLink: string = "home";
   @HostBinding('class.close-side-nav') isActive: boolean;
 
   constructor() { }
@@ -18,6 +18,10 @@ export class SidenavComponent implements OnInit {
   toggleSideNav() {
     this.toggleNav = !this.toggleNav;
     this.isActive = !this.toggleNav;
+  }
+
+  onLinkActive(data: string){
+    this.selectedLink = data;
   }
 
 }

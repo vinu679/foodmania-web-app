@@ -12,6 +12,10 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RestaurantDetailsComponent } from './components/restaurant/restaurant-details/restaurant-details.component';
 import { FormsModule } from '@angular/forms';
+import { OrdersComponent } from './components/orders/orders.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
+import { HelpComponent } from './components/help/help.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import { FormsModule } from '@angular/forms';
     RestaurantComponent,
     SidenavComponent,
     HeaderComponent,
-    RestaurantDetailsComponent
+    RestaurantDetailsComponent,
+    OrdersComponent,
+    NotificationsComponent,
+    HelpComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

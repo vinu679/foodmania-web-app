@@ -6,20 +6,20 @@
     <button type="button" class="btn-icon btn-icon-toggle toggle-position" (click)="toggleSideNav()"></button>
     
     <ul class="side-nav-menu">
-        <li class="active">
-            <a routerLink="/resturant" class="home">Home</a>
+        <li [ngClass]="{'active': selectedLink == 'home'}">
+            <a routerLink="/resturant" class="home" (click)="onLinkActive('home')">Home</a>
         </li>
-        <li>
-            <a href="#" class="orders">Orders</a>
+        <li [ngClass]="{'active': selectedLink == 'orders'}">
+            <a routerLink="/orders" class="orders" (click)="onLinkActive('orders')">Orders</a>
         </li>
-        <li>
-            <a href="#" class="notifications">Notification <span class="number-badge fl-right">2</span></a>
+        <li [ngClass]="{'active': selectedLink == 'notifications'}">
+            <a routerLink="/notifications" class="notifications" (click)="onLinkActive('notifications')">Notification <span class="number-badge fl-right">2</span></a>
         </li>
-        <li>
-            <a href="#" class="help">Help & Support</a>
+        <li [ngClass]="{'active': selectedLink == 'help'}">
+            <a routerLink="/help" class="help" (click)="onLinkActive('help')">Help & Support</a>
         </li>
-        <li>
-            <a href="#" class="settings">Settings</a>
+        <li [ngClass]="{'active': selectedLink == 'settings'}">
+            <a routerLink="/settings" class="settings" (click)="onLinkActive('settings')">Settings</a>
         </li>
     </ul>
 </div>
